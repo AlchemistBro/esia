@@ -1,0 +1,40 @@
+services:
+  esia-auth:
+    build:
+      context: .
+    image: esia-auth:latest
+    container_name: esia-auth
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    expose:
+      - "8000"
+    networks:
+      nginx-network:
+        aliases:
+          - esia-callback
+    volumes:
+      - ./config.json:/app/config.json:ro
+      - ./certs/tesia-gost.cer:/app/certs/tesia-gost.cer:ro
+      - ./runtime/csptest-wrapper:/usr/local/bin/csptest-wrapper:ro
+      - ./runtime/csp-pin:/run/secrets/csp-pin:ro
+      - ./runtime/key/16fa6640.000:/var/opt/cprocsp/keys/root/16fa6640.000:rw
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 128
+    mem_limit: 384m
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+
+networks:
+  nginx-network:
+    external: true
+    name: nginx_default
