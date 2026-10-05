@@ -1,0 +1,31 @@
+{
+  "redirect_uri": "https://веб3-мост.рф/auth/esia/callback",
+  "mnemonic": "KTSYSTEM",
+  "esia_uri": "https://esia-portal1.test.gosuslugi.ru",
+  "csp_test_path": "/usr/local/bin/csptest-wrapper",
+  "csp_container": "16fa6640-1229-4fe0-b8f1-c7d56f24f900",
+  "cert_hash": "AC86417F0598B0581FACFD5FC1D6973331488D772427C540BC4A6ED666FDBAA2",
+  "http_listen_addr": ":8000",
+  "esia_response_cert_path": "/app/certs/tesia-gost.cer",
+  "id_token_algorithm": "GOST3410_2012_256",
+  "id_token_issuer": "http://esia-portal1.test.gosuslugi.ru/",
+  "oauth": {
+    "scopes": [
+      "openid"
+    ]
+  },
+  "consent": {
+    "permissions": [
+      {
+        "sysname": "APIPGU",
+        "expire": 525600,
+        "actions": [{"sysname": "ALL_ACTIONS_TO_DATA"}],
+        "purposes": [{"sysname": "APIPGU"}],
+        "scopes": [
+          {"sysname": "fullname"},
+          {"sysname": "email"}
+        ]
+      }
+    ]
+  }
+}
